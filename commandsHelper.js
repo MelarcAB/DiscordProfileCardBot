@@ -1,6 +1,6 @@
 const commands_arr = ['show']
 
-//Comprueba el comando introducido
+//Check if command exists
 function isCommand(msg) {
     let msg_content = msg.replace("!", "");
     let command = msg_content.split(/[ ,]+/)[0]

@@ -13,7 +13,7 @@ const client = new Discord.Client({
 
 
 
-
+//On message received
 client.on('messageCreate', async msg => {
     var msg_content = (msg.content)
     if (!msg_content.startsWith("!")) return;
@@ -21,38 +21,16 @@ client.on('messageCreate', async msg => {
 
     let data = cardHelper.getDataFromMessage(msg)
 
-    await cardHelper.generateCardImg(data)
+    let generated_card = await cardHelper.generateCardImg(data)
     let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".jpeg"
-
-
-    msg.channel.send({
+    await msg.channel.send({
         files: [path]
     });
 
+    fs.unlinkSync(path);
+    console.log(">Card removed : "+path)
 
-    console.log(path)
-    console.log(">Image sended")
-
-
-    // console.log(data)
-    //console.log('ENTRA')
-    //Obtener imagen perfil URL (png)
-    // console.log(msg.author.displayAvatarURL({format:"png"}))
-    //)
-
-    //helper.isCommand("MELARC");
 });
-
-
-
-
-
-
-
-function sendCard() {
-    let client = app.getDiscordClient();
-    console.log("--OK")
-}
 
 
 
@@ -67,7 +45,7 @@ client.on('ready', () => {
 
 
 
-
+//Put bot online
 function startBot() {
     client.login(config.BOT_TOKEN);
 }
@@ -81,6 +59,5 @@ function startBot() {
 
 
 module.exports = {
-    sendCard: sendCard,
     startBot: startBot
 }
