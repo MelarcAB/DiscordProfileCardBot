@@ -10,6 +10,7 @@ const client = new Discord.Client({
 
 //Exports
 var helper = require("./commandsHelper.js");
+var cardHelper = require("./cardHelper.js");
 
 
 //Vars
@@ -19,13 +20,17 @@ var helper = require("./commandsHelper.js");
 //Events
 client.on('messageCreate', msg => {
     var msg_content = (msg.content)
-    if (!msg_content.startsWith("!") ) return;
-    if (!helper.isCommand(msg_content) ) return;
+    if (!msg_content.startsWith("!")) return;
+    if (!helper.isCommand(msg_content)) return;
 
-    console.log("correcte")
+    let data = cardHelper.getDataFromMessage(msg)
+    let img_generation = cardHelper.generateCardImg(data)
+
+   // console.log(data)
     //console.log('ENTRA')
     //Obtener imagen perfil URL (png)
-    // console.log(message.author.displayAvatarURL({format:"png"}))
+    // console.log(msg.author.displayAvatarURL({format:"png"}))
+    //)
 
     //helper.isCommand("MELARC");
 });
