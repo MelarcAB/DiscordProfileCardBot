@@ -4,44 +4,19 @@ const Discord = require('discord.js');
 const fs = require("fs");
 const nodeHtmlToImage = require('node-html-to-image')
 
-const client = new Discord.Client({
-    intents: ["GUILDS", "GUILD_MESSAGES"]
-})
-
 //Exports
-var helper = require("./commandsHelper.js");
-var cardHelper = require("./cardHelper.js");
+var discordHelper = require("./discordHelper.js");
 
 
 //Vars
 
 
 
+
+//Init
+discordHelper.startBot();
+
 //Events
-client.on('messageCreate', msg => {
-    var msg_content = (msg.content)
-    if (!msg_content.startsWith("!")) return;
-    if (!helper.isCommand(msg_content)) return;
-
-    let data = cardHelper.getDataFromMessage(msg)
-    let img_generation = cardHelper.generateCardImg(data)
-
-   // console.log(data)
-    //console.log('ENTRA')
-    //Obtener imagen perfil URL (png)
-    // console.log(msg.author.displayAvatarURL({format:"png"}))
-    //)
-
-    //helper.isCommand("MELARC");
-});
-
-client.on('ready', () => {
-    console.log('>Bot started');
-});
-
-
-
-client.login(config.BOT_TOKEN);
 
 
 
@@ -51,6 +26,15 @@ client.login(config.BOT_TOKEN);
 
 
 
+
+function getDiscordClient(){
+    return client;
+}
+
+
+module.exports = {
+    getDiscordClient: getDiscordClient,
+}
 
 //const client = new Discord.Client();
 

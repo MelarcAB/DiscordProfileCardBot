@@ -1,7 +1,3 @@
-module.exports = {
-    isCommand: isCommand
-}
-
 const commands_arr = ['show']
 
 //Comprueba el comando introducido
@@ -10,4 +6,8 @@ function isCommand(msg) {
     let command = msg_content.split(/[ ,]+/)[0]
     if (commands_arr.includes(command)) return true
     else return false
+}
+
+module.exports = {
+    isCommand: isCommand
 }
