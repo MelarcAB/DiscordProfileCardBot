@@ -1,0 +1,30 @@
+{
+  "name": "DiscordProfileCardBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "bot",
+    "discord",
+    "card",
+    "profile",
+    "custom",
+    "users",
+    "interaction"
+  ],
+  "author": "MelarcAB",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.5.0",
+    "@discordjs/rest": "*",
+    "discord-api-types": "^0.22.0",
+    "discord.js": "^13.1.0",
+    "node-html-to-image": "^3.2.0",
+    "nodemon": "^2.0.13",
+    "read-css": "^0.3.0"
+  }
+}
