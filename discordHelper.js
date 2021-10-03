@@ -2,16 +2,16 @@ const config = require("./config.json");
 const Discord = require('discord.js');
 const app = require("./app.js");
 const fs = require('fs')
-
-
-var helper = require("./commandsHelper.js");
-var cardHelper = require("./cardHelper.js");
-
 const client = new Discord.Client({
     intents: ["GUILDS", "GUILD_MESSAGES"]
 })
 
 
+
+var helper = require("./commandsHelper.js");
+var cardHelper = require("./cardHelper.js");
+
+var storedFunctions = {}
 
 //On message received
 client.on('messageCreate', async msg => {
@@ -19,8 +19,19 @@ client.on('messageCreate', async msg => {
     if (!msg_content.startsWith("!")) return;
     if (!helper.isCommand(msg_content)) return;
 
-    let data = cardHelper.getDataFromMessage(msg)
+    let functionCommand = helper.getFunctionCommand(msg_content.replace("!", "").split(/[ ,]+/)[0]);
 
+    //Call function using functionCommand
+    storedFunctions[functionCommand](msg)
+
+
+
+});
+
+
+
+storedFunctions.initGenerateCard= async function (msg){
+    let data = cardHelper.getDataFromMessage(msg)
     let generated_card = await cardHelper.generateCardImg(data)
     let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".jpeg"
     await msg.channel.send({
@@ -29,21 +40,20 @@ client.on('messageCreate', async msg => {
 
     fs.unlinkSync(path);
     console.log(">Card removed : "+path)
-
-});
-
+}
 
 
 
 
+
+
+
+
+
+//INIT DISCORD BOT CLIENT ----------------------------------------------
 client.on('ready', () => {
     console.log('>Bot started');
 });
-
-
-
-
-
 
 //Put bot online
 function startBot() {

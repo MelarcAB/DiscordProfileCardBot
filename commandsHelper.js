@@ -8,6 +8,25 @@ function isCommand(msg) {
     else return false
 }
 
+
+function getFunctionCommand(command) {
+
+    switch (command) {
+        case "show":
+            return "initGenerateCard"
+            break;
+    }
+}
+
+
+
+
+
+
+
+
+
 module.exports = {
-    isCommand: isCommand
+    isCommand: isCommand,
+    getFunctionCommand: getFunctionCommand
 }
