@@ -12,8 +12,8 @@ var User = mongoose.model('configs', {
         shadow_color: String,
         font_type: Number,
         background_color: String,
-        background_img : String,
-        
+        background_img : String
+
     }
 });
 
