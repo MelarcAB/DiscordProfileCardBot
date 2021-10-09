@@ -1,6 +1,6 @@
 body {
-    width: 500px;
-    height: 700px;
+    width: 600px;
+    height: 830px;
     border: 1px solid blue;
     position: relative;
 }
@@ -42,5 +42,29 @@ h1 {
     margin: 75px auto;
     display: block;
     z-index: 1;
+    margin-bottom: 20px;
 
+}
+
+#card-title{
+    text-align: center;
+    color:blue;
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0;
+}
+
+
+.border-img{
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.57);
+}
+
+.sombra-container{
+   
+}
+
+.text{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
 }

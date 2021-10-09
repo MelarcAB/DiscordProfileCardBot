@@ -9,7 +9,11 @@ var User = mongoose.model('configs', {
     configuration: {
         color: String,
         text_color: String,
-        font_type: Number
+        shadow_color: String,
+        font_type: Number,
+        background_color: String,
+        background_img : String,
+        
     }
 });
 

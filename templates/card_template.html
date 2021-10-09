@@ -1,19 +1,24 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+
+</head>
 <div id="top-bar">
     <span id="discord-nick"> {{ discord_nick }}#{{ discord_discriminator }}</span>
 
 </div>
-<div id="info-container">
+<div id="info-container" class="sombra-container">
 
 
     <h1> {{ discord_nick }}</h1>
-    <p>{{ card_description }}</p> 
+    <p class="text">{{ card_description }}</p>
 
 </div>
 
-<h1></h1>
-<img id="avatar" 
-    src="{{discord_img_url}}"
-    width="30%">
+
+<img id="avatar" src="https://pbs.twimg.com/profile_images/818134190222938112/VCaVWIhQ.jpg" width="30%" class="border-img">
+
+<h3 id="card-title">{{ card_title }}</h3>
+
 
 <style>
     {{css_content}}
