@@ -5,7 +5,7 @@ const discordHelper = require("./discordHelper.js");
 
 
 //Generate img(card) using data generated -> getDataFromMessage(msg)
-async function generateCardImg(data) {
+async function generateCardImg(data,user) {
     let template_html = fs.readFileSync(__dirname + '/templates/card_template.html', 'utf8');
 
     const image = await nodeHtmlToImage({
@@ -19,8 +19,18 @@ async function generateCardImg(data) {
 
 
 //Prepare data to send
-function getDataFromMessage(msg) {
+function getDataFromMessage(msg,user) {
     let css_content = fs.readFileSync(__dirname + '/templates/style.css', 'utf8');
+
+    //Replace css vars to custom configuration
+    if(user != [] || user != null){
+       
+    }else {
+        // user = getDefaultTemplate()
+    }
+
+    console.log(user)
+
     let data = {
         discord_nick: msg.author.username,
         discord_id: msg.author.id,
@@ -29,14 +39,14 @@ function getDataFromMessage(msg) {
             format: "png"
         }),
         css_content: css_content,
-        card_description: "Això és la descripció \n\n\r\r <br> test"
+        card_description: user.description
     }
+    console.log(data)
     return data
 }
 
-
+//Export functions
 module.exports = {
     generateCardImg: generateCardImg,
     getDataFromMessage: getDataFromMessage
-
 }

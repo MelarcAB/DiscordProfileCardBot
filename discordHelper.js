@@ -14,6 +14,7 @@ const client = new Discord.Client({
 
 var helper = require("./commandsHelper.js");
 var cardHelper = require("./cardHelper.js");
+var mongooseHelper = require("./mongooseHelper.js");
 
 var storedFunctions = {}
 
@@ -36,13 +37,19 @@ client.on('messageCreate', async msg => {
 
 //Functions
 storedFunctions.initGenerateCard = async function (msg) {
-    let data = cardHelper.getDataFromMessage(msg)
+    
+    let nick_id = msg.author.username + "#" + msg.author.discriminator
+    let user_found = await mongooseHelper.findUserByNick(nick_id);
+
+    let data = cardHelper.getDataFromMessage(msg,user_found)
     let generated_card = await cardHelper.generateCardImg(data)
+
     let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".jpeg"
     await msg.channel.send({
         files: [path]
     });
 
+    //Delete generated file from local
     fs.unlinkSync(path);
     console.log(">Card removed : " + path)
 }

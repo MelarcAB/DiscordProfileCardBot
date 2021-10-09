@@ -5,15 +5,38 @@ const nodeHtmlToImage = require('node-html-to-image')
 
 //Custom modules
 var discordHelper = require("./discordHelper.js");
+var mongooseHelper = require("./mongooseHelper.js");
 
-//Init bot
-discordHelper.startBot();
 
-function getDiscordClient(){
+
+initBot()
+
+
+
+//Init BOT
+function initBot() {
+    //Start connection
+    mongooseHelper.startConnection();
+    //After starting connection -> start Bot
+    discordHelper.startBot();
+
+}
+
+
+
+function getDiscordClient() {
     return client;
 }
+
 
 
 module.exports = {
     getDiscordClient: getDiscordClient,
 }
+
+
+
+
+
+//TEST
+var discordHelper = require("./mongooseHelper.js");
