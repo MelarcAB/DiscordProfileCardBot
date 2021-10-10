@@ -34,20 +34,39 @@ client.on('messageCreate', async msg => {
 storedFunctions.initGenerateCard = async function (msg) {
 
     //TO DO -> Check if isset username param, in this case we will search the user info. ELSE -> search current user data
+    let nick_id = ""
+    let createIfNotExists = false
+    if ((msg.content.replace("!", "")).split(/[ ,]+/).length > 1) {
+        nick_id = (msg.content.replace("!", "")).split(/[ ,]+/)[1]
+    } else {
+        nick_id = msg.author.username + "#" + msg.author.discriminator
+        createIfNotExists = true
+    }
+    
 
-    let nick_id = msg.author.username + "#" + msg.author.discriminator
-    let user_found = await mongooseHelper.findUserByNick(nick_id);
-    let data = cardHelper.getDataFromMessage(msg, user_found)
-    let generated_card = await cardHelper.generateCardImg(data)
-    let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".png"
 
-    await msg.channel.send({
-        files: [path]
-    });
+   
+    // let command_param = (msg.content.replace("!", "")).split(/[ ,]+/)[1].trim();
+    // console.log(command_param);
 
-    //Delete generated file from local
-    fs.unlinkSync(path);
-    console.log(">Card removed : " + path)
+
+
+    /*
+        let nick_id = msg.author.username + "#" + msg.author.discriminator
+        let user_found = await mongooseHelper.findUserByNick(nick_id);
+        let data = cardHelper.getDataFromMessage(msg, user_found)
+        let generated_card = await cardHelper.generateCardImg(data)
+        let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".png"
+
+        await msg.channel.send({
+            files: [path]
+        });
+
+        //Delete generated file from local
+        fs.unlinkSync(path);
+        console.log(">Card removed : " + path)
+
+        */
 }
 
 

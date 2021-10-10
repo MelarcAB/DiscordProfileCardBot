@@ -49,12 +49,12 @@ body {
 
 
 #info-description-container {
-     border: 1px solid blue;
+    /* border: 1px solid blue;*/
     width: 500px;
     height: 250px;
     max-height: 250px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 45px;
     overflow: hidden;
     white-space: nowrap;

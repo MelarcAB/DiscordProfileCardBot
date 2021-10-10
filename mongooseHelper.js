@@ -7,6 +7,7 @@ var User = mongoose.model('configs', {
     nick: String,
     title: String,
     description: String,
+    img : String,
     configuration: {
         color: String,
         title_color: String,
