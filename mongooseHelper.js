@@ -28,7 +28,7 @@ async function startConnection() {
 
 async function findUserByNick(nick) {
     let user = await User.find({
-        "id": nick
+        'nick': nick
     })
     return (user[0]);
 }
