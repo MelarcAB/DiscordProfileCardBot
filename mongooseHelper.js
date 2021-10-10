@@ -2,6 +2,7 @@ const config = require("./config.json");
 const mongoose = require('mongoose');
 mongoose instanceof mongoose.Mongoose; // true
 
+//User model
 var User = mongoose.model('configs', {
     nick: String,
     title: String,
@@ -19,24 +20,10 @@ var User = mongoose.model('configs', {
 });
 
 
-
-
-
-/*
-const show = async() =>{
-    
-}
-
-show()
-*/
-
-
 //Start mongoose connection to db
-
 async function startConnection() {
     await mongoose.connect(config.MONGOOSE_CONNECTOR);
 }
-
 
 async function findUserByNick(nick) {
     let user = await User.find({
@@ -45,13 +32,12 @@ async function findUserByNick(nick) {
     return (user[0]);
 }
 
-
-
 mongoose.connection.once('open', function () {
     console.log(">Connection DB: OK");
 }).once('error', function (error) {
     console.log(">Connection DB error!!");
 })
+
 
 module.exports = {
     startConnection: startConnection,

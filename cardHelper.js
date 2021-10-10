@@ -1,6 +1,5 @@
 const nodeHtmlToImage = require('node-html-to-image')
 const fs = require("fs");
-
 const discordHelper = require("./discordHelper.js");
 
 
@@ -16,8 +15,6 @@ async function generateCardImg(data,user) {
         .then(() => console.log('>Card generated for user ' + data.discord_nick + "#" + data.discord_discriminator))
 }
 
-
-
 //Prepare data to send
 function getDataFromMessage(msg,user) {
     let css_content = fs.readFileSync(__dirname + '/templates/style.css', 'utf8');
@@ -28,8 +25,6 @@ function getDataFromMessage(msg,user) {
     }else {
         // user = getDefaultTemplate()
     }
-
-//    console.log(user)
 
     let data = {
         discord_nick: msg.author.username,
@@ -42,9 +37,17 @@ function getDataFromMessage(msg,user) {
         card_description: user.description,
         card_title: user.title,
     }
-   // console.log(data)
+
     return data
 }
+
+
+async function getDataFromUser(user){
+    //if user exist in db -> create default template and generate img
+
+    //if exist generate img from user data
+}
+
 
 //Export functions
 module.exports = {

@@ -1,7 +1,8 @@
+//Comands and description object
 const commands_obj = {
     card: {
         function: "initGenerateCard",
-        description: "Shows the user card. Using \"!card username\" shows the specific card from others."
+        description: "Shows the current user card. Using \"!card username\" shows the specific card from others."
     },
     help: {
         function: "showHelpCommands",
@@ -36,8 +37,6 @@ function getFunctionCommand(command) {
     if (commands_obj[cmd].function) return commands_obj[cmd].function
     else return false
 }
-
-
 
 //Get commands obj
 function getCommandsObj() {
