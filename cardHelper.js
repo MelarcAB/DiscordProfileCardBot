@@ -9,7 +9,7 @@ async function generateCardImg(data,user) {
     let template_html = fs.readFileSync(__dirname + '/templates/card_template.html', 'utf8');
 
     const image = await nodeHtmlToImage({
-            output: './tmp_files/' + data.discord_nick + data.discord_discriminator + ".jpeg",
+            output: './tmp_files/' + data.discord_nick + data.discord_discriminator + ".png",
             html: template_html,
             content: data
         })
@@ -29,7 +29,7 @@ function getDataFromMessage(msg,user) {
         // user = getDefaultTemplate()
     }
 
-    console.log(user)
+//    console.log(user)
 
     let data = {
         discord_nick: msg.author.username,
@@ -39,9 +39,10 @@ function getDataFromMessage(msg,user) {
             format: "png"
         }),
         css_content: css_content,
-        card_description: user.description
+        card_description: user.description,
+        card_title: user.title,
     }
-    console.log(data)
+   // console.log(data)
     return data
 }
 

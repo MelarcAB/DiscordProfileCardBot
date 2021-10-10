@@ -2,23 +2,34 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<div id="top-bar">
-    <span id="discord-nick"> {{ discord_nick }}#{{ discord_discriminator }}</span>
 
-</div>
-<div id="info-container" class="sombra-container">
-    <div id="info-description-container">
-        <p class="text">{{ card_description }}</p>
+<body id="card">
+    <div id="card-span"  class="background">
+        <div id="top-bar">
+            <img src="https://i.imgur.com/S7IOxew.png" width="30px"
+                style="padding-left: 15px; padding-top: 10px;display: inline-block;">
+            <div id="discord-nick"> {{ discord_nick }}#{{ discord_discriminator }}</div>
+
+        </div>
+
+
+
+        <img id="avatar" src="https://pbs.twimg.com/profile_images/818134190222938112/VCaVWIhQ.jpg" width="30%"
+            class="border-img">
+
+        <h3 id="card-title">{{ card_title }}</h3>
+
+        <br><br><br>
+
+        <div id="info-container" class="sombra-container">
+            <div id="info-description-container">
+                <p class="text">{{ card_description }}</p>
+            </div>
+
+        </div>
+
+        <style>
+           {{css_content}}
+        </style>
     </div>
-
-</div>
-
-
-<img id="avatar" src="https://pbs.twimg.com/profile_images/818134190222938112/VCaVWIhQ.jpg" width="30%" class="border-img">
-
-<h3 id="card-title">{{ card_title }}</h3>
-
-
-<style>
-    {{css_content}}
-</style>
+</body>

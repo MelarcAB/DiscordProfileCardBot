@@ -44,7 +44,7 @@ storedFunctions.initGenerateCard = async function (msg) {
     let data = cardHelper.getDataFromMessage(msg,user_found)
     let generated_card = await cardHelper.generateCardImg(data)
 
-    let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".jpeg"
+    let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".png"
     await msg.channel.send({
         files: [path]
     });
