@@ -47,20 +47,17 @@ storedFunctions.initGenerateCard = async function (msg) {
     if (user === undefined) {
         //Create user if not exist in db
         if (createIfNotExists) {
-            console.log("saving user info into db")
+            user = await mongooseHelper.createUserByMessage(msg)
+            console.log("New user created: " + nick_id)
 
         } else {
-            //Send error message
+            //Send error m
             await msg.channel.send(
                 "User not found.\nRemember: To see the card of another user it's necessary that the searched user has generated it at least once."
             )
             return
         }
-
     }
-
-
-    console.log(user)
 
 
 
