@@ -4,7 +4,7 @@ const discordHelper = require("./discordHelper.js");
 
 
 //Generate img(card) using data generated -> getDataFromMessage(msg)
-async function generateCardImg(data,user) {
+async function generateCardImg(data) {
     let template_html = fs.readFileSync(__dirname + '/templates/card_template.html', 'utf8');
 
     const image = await nodeHtmlToImage({
@@ -18,7 +18,6 @@ async function generateCardImg(data,user) {
 //Prepare data to send
 function getDataFromMessage(msg,user) {
     let css_content = fs.readFileSync(__dirname + '/templates/style.css', 'utf8');
-
     //Replace css vars to custom configuration
     if(user != [] || user != null){
        
@@ -43,14 +42,31 @@ function getDataFromMessage(msg,user) {
 
 
 async function getDataFromUser(user){
-    //if user exist in db -> create default template and generate img
+    let css_content = fs.readFileSync(__dirname + '/templates/style.css', 'utf8');
 
-    //if exist generate img from user data
+    //Replace css vars to custom configuration
+    if(user != [] || user != null){
+       
+    }else {
+        // user = getDefaultTemplate()
+    }
+
+    let data = {
+        discord_nick: user.username,
+        discord_id: user.user_id,
+        discord_discriminator: user.discriminator,
+        discord_img_url: user.img,
+        css_content: css_content,
+        card_description: user.description,
+        card_title: user.title,
+    }
+
+    return data
 }
-
 
 //Export functions
 module.exports = {
     generateCardImg: generateCardImg,
-    getDataFromMessage: getDataFromMessage
+    getDataFromMessage: getDataFromMessage,
+    getDataFromUser:getDataFromUser
 }

@@ -8,6 +8,9 @@ var User = mongoose.model('configs', {
     title: String,
     description: String,
     img: String,
+    username: String,
+    discriminator: String,
+    user_id: String,
     configuration: {
         color: String,
         title_color: String,
@@ -46,9 +49,14 @@ async function createUserByMessage(msg) {
 
     user = User.create({
         nick: nick_id,
-        title: nick_id+" title",
-        description: "To edit this description use  \"/card setDescription This is the new description.\"",
-        img: msg.author.displayAvatarURL({format: "png"}),
+        title: nick_id + " title",
+        description: "To edit this description use  \n \"/card setDescription This is the new description.\"",
+        img: msg.author.displayAvatarURL({
+            format: "png"
+        }),
+        username:msg.author.username,
+        user_id: msg.author.id,
+        discriminator: msg.author.discriminator,
         configuration: {
             color: "yellow",
             title_color: "red",
