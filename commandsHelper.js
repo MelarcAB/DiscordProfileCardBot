@@ -16,6 +16,10 @@ const commands_obj = {
         function: "showAuthorInfo",
         description: "Shows general information about the bot.."
     },
+    cardedit:{
+        function: "changeUserField",
+        description: "hange the value of the entered field. Fields: title, description.\nExample: !cardEdit description This is the new description"
+    }
 
 }
 

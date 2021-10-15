@@ -22,6 +22,7 @@ client.on('messageCreate', async msg => {
     var msg_content = (msg.content)
     if (!msg_content.startsWith("!")) return;
     if (!helper.isCommand(msg_content)) return;
+
     let functionCommand = helper.getFunctionCommand(msg_content.replace("!", "").split(/[ ,]+/)[0]);
     if (!functionCommand) return;
 
@@ -103,6 +104,29 @@ storedFunctions.showAuthorInfo = function (msg) {
     msg.channel.send({
         embeds: [exampleEmbed]
     });
+}
+
+storedFunctions.changeUserField = async function (msg) {
+    let field = msg.content.split(/[ ,]+/)[1]
+    usernick = msg.author.username + "#" + msg.author.discriminator
+
+    //Non editable fields
+    let fields_non_editable = ['img', "username", "_id", "id", "discriminator", "user_id"]
+    if (fields_non_editable.includes(field)) {
+        await msg.channel.send("Error. This field is non-editable.")
+        return
+    }
+
+    //Replace !command + field to edit
+    let new_field_value = msg.content.substring(11 + field.length)
+    let response = await mongooseHelper.cardUserNewValue(usernick, field, new_field_value)
+    if (response) {
+        await msg.channel.send("User card updated.\nUse !card to see the changes.")
+    } else {
+        await msg.channel.send("Error: Can't update this field.")
+    }
+
+
 }
 
 

@@ -50,11 +50,11 @@ async function createUserByMessage(msg) {
     user = User.create({
         nick: nick_id,
         title: nick_id + " title",
-        description: "To edit this description use  \n \"/card setDescription This is the new description.\"",
+        description: "To edit this description use  \n \"!cardDescription This is the new description.\"",
         img: msg.author.displayAvatarURL({
             format: "png"
         }),
-        username:msg.author.username,
+        username: msg.author.username,
         user_id: msg.author.id,
         discriminator: msg.author.discriminator,
         configuration: {
@@ -74,7 +74,35 @@ async function createUserByMessage(msg) {
 
 
 
+async function cardUserNewValue(usernick, field, value) {
+    let user = await findUserByNick(usernick);
 
+    let update = false
+
+    //Search field in User object
+    if (typeof user[field] !== 'undefined') {
+        update = true
+        user[field] = value
+    }
+    //Search field in User.configuration object
+    else if (typeof user.configuration[field] !== 'undefined') {
+        update = true
+        user.configuration[field] = value
+    }
+    
+    if (update) {
+        let update_user = await User.findOneAndUpdate({
+            'nick': usernick
+        }, user, {
+            new: true
+        });
+
+      
+        return update
+    }
+
+    return update
+}
 
 
 mongoose.connection.once('open', function () {
@@ -87,5 +115,6 @@ mongoose.connection.once('open', function () {
 module.exports = {
     startConnection: startConnection,
     findUserByNick: findUserByNick,
-    createUserByMessage: createUserByMessage
+    createUserByMessage: createUserByMessage,
+    cardUserNewValue: cardUserNewValue,
 }
