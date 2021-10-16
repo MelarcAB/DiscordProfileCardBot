@@ -1,3 +1,4 @@
+//Const/Vars
 const config = require("./config.json");
 const Discord = require('discord.js');
 const app = require("./app.js");
@@ -17,6 +18,13 @@ var mongooseHelper = require("./mongooseHelper.js");
 var storedFunctions = {}
 
 
+
+//Events
+//INIT DISCORD BOT CLIENT 
+client.on('ready', () => {
+    console.log('>Bot started');
+});
+
 //On message received
 client.on('messageCreate', async msg => {
     var msg_content = (msg.content)
@@ -32,8 +40,13 @@ client.on('messageCreate', async msg => {
 
 
 //Functions
+//Put bot online
+function startBot() {
+    client.login(config.BOT_TOKEN);
+}
+
+//Card generator function
 storedFunctions.initGenerateCard = async function (msg) {
-    //TO DO -> Check if isset username param, in this case we will search the user info. ELSE -> search current user data
     let nick_id = ""
     let createIfNotExists = false
     if ((msg.content.replace("!", "")).split(/[ ,]+/).length > 1) {
@@ -57,15 +70,8 @@ storedFunctions.initGenerateCard = async function (msg) {
             return
         }
     }
-
-
-
-    // let command_param = (msg.content.replace("!", "")).split(/[ ,]+/)[1].trim();
-    // console.log(command_param);
-
     let user_found = await mongooseHelper.findUserByNick(nick_id);
 
-    //  let data = cardHelper.getDataFromMessage(msg, user_found)
     let data = await cardHelper.getDataFromUser(user_found)
     let generated_card = await cardHelper.generateCardImg(data)
     let path = './tmp_files/' + data.discord_nick + data.discord_discriminator + ".png"
@@ -77,35 +83,10 @@ storedFunctions.initGenerateCard = async function (msg) {
     //Delete generated file from local
     fs.unlinkSync(path);
     console.log(">Card removed : " + path)
-
-
 }
 
 
-storedFunctions.generateCardCustomUser = async function (msg) {}
-
-
-
-storedFunctions.showHelpCommands = async function (commands) {}
-
-
-storedFunctions.showBotInfo = async function (msg) {}
-
-storedFunctions.showAuthorInfo = function (msg) {
-    const exampleEmbed = new MessageEmbed()
-        .setColor('#0099ff')
-        .setTitle('Melarc#1006')
-        .setURL('https://melarcab.com/')
-        .setAuthor('Melarc AB', 'https://cdn.discordapp.com/avatars/141909410019540992/7f0b7bb5849c41f6cc6ea63975856a30.jpeg', 'https://discordapp.com/users/141909410019540992')
-        .setDescription('Web developer and digital artist.')
-        .setThumbnail('https://cdn.discordapp.com/avatars/141909410019540992/7f0b7bb5849c41f6cc6ea63975856a30.jpeg')
-        .setFooter('Visita mi página web', 'https://cdn.discordapp.com/avatars/141909410019540992/7f0b7bb5849c41f6cc6ea63975856a30.jpeg');
-
-    msg.channel.send({
-        embeds: [exampleEmbed]
-    });
-}
-
+//Edit/Modify user field
 storedFunctions.changeUserField = async function (msg) {
     let field = msg.content.split(/[ ,]+/)[1]
     usernick = msg.author.username + "#" + msg.author.discriminator
@@ -126,22 +107,25 @@ storedFunctions.changeUserField = async function (msg) {
         await msg.channel.send("Error: Can't update this field.")
     }
 
-
 }
 
 
+//Show Author Info
+storedFunctions.showAuthorInfo = function (msg) {
+    const exampleEmbed = new MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Melarc#1006')
+        .setURL('https://melarcab.com/')
+        .setAuthor('Melarc AB', 'https://cdn.discordapp.com/avatars/141909410019540992/7f0b7bb5849c41f6cc6ea63975856a30.jpeg', 'https://discordapp.com/users/141909410019540992')
+        .setDescription('Web developer and digital artist.')
+        .setThumbnail('https://cdn.discordapp.com/avatars/141909410019540992/7f0b7bb5849c41f6cc6ea63975856a30.jpeg')
+        .setFooter('Visita mi página web', 'https://cdn.discordapp.com/avatars/141909410019540992/7f0b7bb5849c41f6cc6ea63975856a30.jpeg');
 
-
-
-//INIT DISCORD BOT CLIENT ----------------------------------------------
-client.on('ready', () => {
-    console.log('>Bot started');
-});
-
-//Put bot online
-function startBot() {
-    client.login(config.BOT_TOKEN);
+    msg.channel.send({
+        embeds: [exampleEmbed]
+    });
 }
+
 
 
 

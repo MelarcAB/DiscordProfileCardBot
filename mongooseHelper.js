@@ -73,7 +73,7 @@ async function createUserByMessage(msg) {
 }
 
 
-
+//Save User with new field updated
 async function cardUserNewValue(usernick, field, value) {
     let user = await findUserByNick(usernick);
 
@@ -105,6 +105,7 @@ async function cardUserNewValue(usernick, field, value) {
 }
 
 
+//Event -on connection start
 mongoose.connection.once('open', function () {
     console.log(">Connection DB: OK");
 }).once('error', function (error) {
