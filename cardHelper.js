@@ -75,6 +75,11 @@ async function getTemplateStyle(user) {
     //Put user fields to style template
     css_content = css_content.replace("B_COLOR", user.configuration.background_color)
     css_content = css_content.replace("B_LINK", user.configuration.background_img)
+    css_content = css_content.replace("TITLE_COLOR", user.configuration.title_color)
+    css_content = css_content.replace("TEXT_COLOR", user.configuration.text_color)
+    css_content = css_content.replace("COLOR_1", user.configuration.color)
+    css_content = css_content.replace("COLOR_2", user.configuration.color2)
+
 
     return css_content
 

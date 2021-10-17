@@ -13,6 +13,7 @@ var User = mongoose.model('configs', {
     user_id: String,
     configuration: {
         color: String,
+        color2: String,
         title_color: String,
         text_color: String,
         shadow_color: String,
@@ -59,6 +60,7 @@ async function createUserByMessage(msg) {
         discriminator: msg.author.discriminator,
         configuration: {
             color: "yellow",
+            color2: "green",
             title_color: "red",
             text_color: "blue",
             shadow_color: "green",
