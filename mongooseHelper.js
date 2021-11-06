@@ -19,7 +19,10 @@ var User = mongoose.model('configs', {
         shadow_color: String,
         font_type: Number,
         background_color: String,
-        background_img: String
+        background_img: String,
+        font_header:String,
+        font_title: String,
+        font_description:String
 
     }
 });
@@ -66,7 +69,10 @@ async function createUserByMessage(msg) {
             shadow_color: "green",
             font_type: 1,
             background_color: "",
-            background_img: ""
+            background_img: "",
+            font_header:"0",
+            font_title: "0",
+            font_description:"0"
         }
     })
 

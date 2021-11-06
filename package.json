@@ -23,9 +23,10 @@
     "@discordjs/rest": "*",
     "discord-api-types": "^0.22.0",
     "discord.js": "^13.1.0",
+    "font2base64": "^1.0.1",
     "mongoose": "^6.0.8",
     "node-html-to-image": "^3.2.0",
-    "nodemon": "^2.0.13",
+    "nodemon": "^2.0.14",
     "read-css": "^0.3.0"
   }
 }

@@ -1,32 +1,182 @@
 <head>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Pacifico:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Satisfy:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Russo+One:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Henny+Penny:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Gluten:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Sigmar+One:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fruktur:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Grechen+Fuemen:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Creepster:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Carter+One:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Bungee:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Rock+Salt:400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans:400,700,900" rel="stylesheet" />
 
 </head>
 
+
 <body id="card">
-    <div id="card-span"  class="background">
-        <div id="top-bar">
+    <div id="card-span" class="background">
+        <div id="top-bar" >
             <img src="https://i.imgur.com/S7IOxew.png" width="30px"
                 style="padding-left: 15px; padding-top: 10px;display: inline-block;">
-            <div id="discord-nick"> {{ discord_nick }}#{{ discord_discriminator }}</div>
+            <div id="discord-nick" class=" FONT_HEADER "> {{ discord_nick }}#{{ discord_discriminator }}</div>
 
         </div>
-        <img id="avatar" src="{{discord_img_url}}" width="30%"
-            class="border-img">
+        <img id="avatar" src="{{ discord_img_url }}" width="30%" class="border-img">
 
-        <h3 id="card-title">{{ card_title }}</h3>
+        <h3 id="card-title" class=" FONT_TITLE ">{{ card_title }}</h3>
 
         <br><br><br>
 
         <div id="info-container" class="sombra-container">
             <div id="info-description-container">
-                <p class="text">{{ card_description }}</p>
+                <p class="text FONT_DESCRIPTION " >{{ card_description }}</p>
             </div>
-
         </div>
 
         <style>
-           {{css_content}}
+            {{css_content}}
         </style>
     </div>
 </body>
+ <!--Css classes for custom fonts (for some reason this can't be included in the template, so I create a class for every font)-->
+<style>
+     .arial{
+            font-family: "Arial";
+            font-weight: 400;
+        }
+        .font-poppins{
+            font-family: "Poppins";
+            font-weight: 400;
+        }
+        .font-indie-flower{
+            font-family: "Indie Flower";
+            font-weight: 400;
+        }
+        
+        .font-crimson{
+            font-family: "Crimson Text";
+            font-weight: 400;
+        }
+        
+        .font-pacifico{
+            font-family: "Pacifico";
+            font-weight: 400;
+        }
+        
+        .font-architects{
+            font-family: "Architects Daughter";
+            font-weight: 400;
+        }
+        
+        .font-permanent{
+            font-family: "Permanent Marker";
+            font-weight: 400;
+        }
+        
+        .font-satisfy{
+            font-family: "Satisfy";
+            font-weight: 400;
+        }
+        
+        .font-amatic{
+            font-family: "Amatic SC";
+            font-weight: 400;
+        }
+        
+        .font-russo{
+            font-family: "Russo One";
+            font-weight: 400;
+        }
+        
+        .font-henny{
+            font-family: "Henny Penny";
+            font-weight: 400;
+        }
+        
+        .font-gloria{
+            font-family: "Gloria Hallelujah";
+            font-weight: 400;
+        }
+        
+        .font-orbitron{
+            font-family: "Orbitron";
+            font-weight: 400;
+        }
+        
+        .font-gluten{
+            font-family: "Gluten";
+            font-weight: 400;
+        }
+        
+        .font-press{
+            font-family: "Press Start 2P";
+            font-weight: 400;
+        }
+        
+        .font-sigmar{
+            font-family: "Sigmar One";
+            font-weight: 400;
+        }
+        
+        .font-oswald{
+            font-family: "Oswald";
+            font-weight: 400;
+        }
+        
+        .font-ubuntu{
+            font-family: "Ubuntu";
+            font-weight: 400;
+        }
+        
+        .font-sigmar{
+            font-family: "Sigmar One";
+            font-weight: 400;
+        }
+        
+        .font-fruktur{
+            font-family: "Fruktur";
+            font-weight: 400;
+        }
+        
+        .font-grechen{
+            font-family: "Grechen Fuemen";
+            font-weight: 400;
+        }
+        
+        .font-creepster{
+            font-family: "Creepster";
+            font-weight: 400;
+        }
+        
+        .font-bungee{
+            font-family: "Bungee";
+            font-weight: 400;
+        }
+        
+        .font-rock{
+            font-family: "Rock Salt";
+            font-weight: 400;
+        }
+        
+        .font-bubblegum{
+            font-family: "Bubblegum Sans";
+            font-weight: 400;
+        }
+
+        
+</style>
