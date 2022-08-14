@@ -2,5 +2,6 @@
     "BOT_TOKEN": "ODkzMjAyODk2MTQzOTE3MDg2.YVYCBQ.e2Ep1-krV076xQ0Rp-FFc71WdUM",
     "BOT_NAME": "CardProfilerBot",
     "BOT_AUTHOR": "Melarc AB",
-    "AUTHOR_DISCORD_PROFILE": "Melarc#1006"
+    "AUTHOR_DISCORD_PROFILE": "Melarc#1006",
+    "MONGOOSE_CONNECTOR": ""
 }
